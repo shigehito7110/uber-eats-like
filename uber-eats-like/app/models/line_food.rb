@@ -1,7 +1,7 @@
 class LineFood < ApplicationRecord
   belongs_to :restaurant
-  beloings_to :food
-  beloings_to :order, optional: true
+  belongs_to :food
+  belongs_to :order, optional: true
 
   validates :count, numericality: { greater_than: 0 }
 
