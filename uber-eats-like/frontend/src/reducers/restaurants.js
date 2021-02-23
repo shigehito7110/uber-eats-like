@@ -20,7 +20,7 @@ export const restaurantsReducer = (state, action) => {
     case restaurantsActionTypes.FETCH_SUCCESS:
       return {
         fetchState: REQUEST_STATE.OK,
-        restaurantsList: action.payload.restaurants,
+        restaurantsList: action.payload.restaurants
       };
     default:
       throw new Error();
