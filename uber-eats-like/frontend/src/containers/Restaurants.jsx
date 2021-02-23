@@ -38,7 +38,7 @@ const MainCover = styled.img`
 
 const RestaurantsContentsList = styled.div`
 	display: flex;
-	justfy-content: center;
+	justify-content: space-around;
 	margin-bottom: 150px;
 `;
 
@@ -104,8 +104,6 @@ export const Restaurants = () => {
 								</RestaurantsContentWrapper>
 							</Link>
 						)
-
-
 				}
 			</RestaurantsContentsList>
 		</Fragment>
