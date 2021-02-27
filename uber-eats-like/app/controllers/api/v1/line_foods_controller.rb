@@ -7,10 +7,10 @@ module Api
         line_foods = LineFood.active
         if line_foods.exists?
           render json: {
-            line_foods_ids: line_foods.map { |line_food| line_food.id },
+            line_food_ids: line_foods.map { |line_food| line_food.id },
             restaurant: line_foods.first.restaurant,
             count: line_foods.sum { |line_food| line_food.count },
-            amount: line_food.sum { |line_food| line_food.total_amount },
+            amount: line_foods.sum { |line_food| line_food.total_amount },
           }, status: :ok
         else
           render json: {}, status: :no_content
@@ -18,13 +18,12 @@ module Api
       end
 
       def create
-      	if LineFood.active.other_restaurant(@ordered_food.restaurant.id).exists?
+        if LineFood.active.other_restaurant(@ordered_food.restaurant.id).exists?
       	  return render json: {
       	  	existing_restaurant: LineFood.other_restaurant(@ordered_food.restaurant.id).first.restaurant.name,
       	  	new_restaurant: @ordered_food.restaurant.name
       	  }, status: :not_acceptable
       	end
-
       	set_line_food(@ordered_food)
 
       	if @line_food.save
@@ -37,18 +36,19 @@ module Api
       end
 
       def replace
-        LineFood.active.other_restaurant(@ordered_food.restaurant.id).each do |line_food|]
-          line_food.update_attribute(active: false)
+        LineFood.active.other_restaurant(@ordered_food.restaurant.id).each do |line_food|
+          p line_food
+          line_food.update_attribute(:active, false)
         end
-
-        set_food(@ordered_food)
+    
+        set_line_food(@ordered_food)
 
         if @line_food.save
           render json: {
           	line_food: @line_food
           }, statuts: :ok
         else
-          render: json: {}, status: :internal_server_error
+          render json: {}, status: :internal_server_error
         end
       end
 
