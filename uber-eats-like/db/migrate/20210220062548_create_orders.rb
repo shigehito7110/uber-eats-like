@@ -1,8 +1,8 @@
 class CreateOrders < ActiveRecord::Migration[6.1]
   def change
     create_table :orders do |t|
-      t.references :restaurant, null: false, foreign_key: true
-      t.integer :total_price, null: false, default: 0
+      t.references :restaurant, null: false, foreign_key: true, comment: 'レストラン外部キー'
+      t.integer :total_price, null: false, default: 0, comment: '合計金額'
       t.timestamps
     end
   end

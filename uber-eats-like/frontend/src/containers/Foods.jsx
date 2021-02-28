@@ -2,6 +2,8 @@ import React, { Fragment, useReducer, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
 
+import { HeaderWrapper, MainLogoImage } from '../components/StyledHeader.jsx';
+
 import { LocalMallIcon } from '../components/Icons';
 import { FoodWrapper } from '../components/FoodWrapper';
 import { NewOrderConfirmDialog } from '../components/NewOrderConfirmDialog';
@@ -24,12 +26,6 @@ import { HTTP_STATUS_CODE } from '../constants';
 import { COLORS } from '../style_constants';
 import { REQUEST_STATE } from '../constants';
 
-const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 32px;
-`;
-
 const BagIconWrapper = styled.div`
   padding-top: 24px;
 `;
@@ -37,10 +33,6 @@ const BagIconWrapper = styled.div`
 const ColoredBagIcon = styled(LocalMallIcon)`
   color: ${COLORS.MAIN};
 `;
-
-const MainLogoImage = styled.img`
-  height: 90px;
-`
 
 const FoodsList = styled.div`
   display: flex;
